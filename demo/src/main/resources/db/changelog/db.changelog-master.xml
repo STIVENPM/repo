@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="structure/001-create-categories.xml" relativeToChangelogFile="true"/>
+    <include file="structure/002-create-products.xml" relativeToChangelogFile="true"/>
+    <include file="relations/003-add-relationship.xml" relativeToChangelogFile="true"/>
+    <include file="data/004-insert-data.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
