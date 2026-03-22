@@ -1,0 +1,238 @@
+/* ============================================================
+   styles.css — Estilos generales del proyecto
+   ============================================================
+   Organizado en secciones:
+   1. Variables y base
+   2. Body y contenedor
+   3. Títulos
+   4. Tabla
+   5. Botones
+   6. Formularios
+   7. Mensajes de error
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. Variables y base
+   ------------------------------------------------------------
+   Las variables CSS (--nombre) nos permiten definir colores
+   en un solo lugar. Si queremos cambiar el color principal,
+   solo lo cambiamos aquí y se actualiza en todo el proyecto.
+   ------------------------------------------------------------ */
+:root {
+  --color-principal:  #2c3e50;   /* azul oscuro — navbar, headers */
+  --color-acento:     #3498db;   /* azul claro — botones primarios */
+  --color-exito:      #27ae60;   /* verde — botón consultar */
+  --color-advertencia:#f39c12;   /* naranja — botón editar */
+  --color-peligro:    #e74c3c;   /* rojo — botón eliminar y errores */
+  --color-fondo:      #f4f6f9;   /* gris muy claro — fondo de página */
+  --color-blanco:     #ffffff;
+  --sombra:           0 2px 8px rgba(0, 0, 0, 0.1);
+  --radio-borde:      8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing hace que el padding no agrande el elemento,
+     se descuenta del tamaño total */
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-fondo);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--color-principal);
+  font-size: 15px;
+}
+
+
+/* ------------------------------------------------------------
+   2. Contenedor principal
+   ------------------------------------------------------------ */
+.container {
+  max-width: 960px;
+  margin: 0 auto;          /* centra horizontalmente */
+  padding: 30px 20px;
+}
+
+
+/* ------------------------------------------------------------
+   3. Títulos
+   ------------------------------------------------------------ */
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-principal);
+  /* línea decorativa debajo del título */
+  border-bottom: 3px solid var(--color-acento);
+  padding-bottom: 10px;
+}
+
+
+/* ------------------------------------------------------------
+   4. Barra de acciones (input + botones del index)
+   ------------------------------------------------------------ */
+.barra-acciones {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;   /* en pantallas pequeñas se acomoda en filas */
+}
+
+.barra-acciones label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.barra-acciones input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: var(--radio-borde);
+  font-size: 0.95rem;
+  width: 160px;
+  transition: border-color 0.2s;
+}
+
+/* cuando el input está activo se resalta con el color acento */
+.barra-acciones input:focus {
+  outline: none;
+  border-color: var(--color-acento);
+}
+
+
+/* ------------------------------------------------------------
+   5. Tabla
+   ------------------------------------------------------------ */
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;   /* elimina el espacio entre celdas */
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  overflow: hidden;            /* para que el border-radius se vea */
+  box-shadow: var(--sombra);
+}
+
+/* Encabezado de la tabla */
+.tabla-productos thead tr {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  text-align: left;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Efecto hover en las filas para saber dónde está el cursor */
+.tabla-productos tbody tr:hover {
+  background-color: #eaf4fb;
+}
+
+/* La última fila no necesita línea inferior */
+.tabla-productos tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Columna de acciones centrada */
+.tabla-productos td:last-child {
+  text-align: center;
+  white-space: nowrap;   /* evita que los botones se partan en dos líneas */
+}
+
+
+/* ------------------------------------------------------------
+   6. Botones
+   ------------------------------------------------------------ */
+.btn {
+  padding: 7px 16px;
+  border: none;
+  border-radius: var(--radio-borde);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  /* transition hace que el cambio de color al hover sea suave */
+  transition: opacity 0.2s, transform 0.1s;
+  text-decoration: none;   /* por si el botón es un <a> */
+  display: inline-block;
+}
+
+/* Al pasar el cursor el botón se oscurece un poco */
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);  /* sube 1px, da sensación de click */
+}
+
+.btn-primary   { background-color: var(--color-acento);     color: white; }
+.btn-success   { background-color: var(--color-exito);      color: white; }
+.btn-warning   { background-color: var(--color-advertencia);color: white; }
+.btn-danger    { background-color: var(--color-peligro);    color: white; }
+.btn-secondary { background-color: #95a5a6;                 color: white; }
+
+/* Botones pequeños para las filas de la tabla */
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 0.80rem;
+}
+
+
+/* ------------------------------------------------------------
+   7. Tarjeta de formulario (create.html y edit.html)
+   ------------------------------------------------------------ */
+.card-form {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  padding: 30px;
+  max-width: 500px;    /* los formularios no necesitan todo el ancho */
+}
+
+.form-grupo {
+  margin-bottom: 18px;
+}
+
+.form-grupo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.form-grupo input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #ccc;
+  border-radius: var(--radio-borde);
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.form-grupo input:focus {
+  outline: none;
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Fila de botones del formulario */
+.form-acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+
+/* ------------------------------------------------------------
+   8. Mensaje de error
+   ------------------------------------------------------------ */
+.mensaje-error {
+  color: var(--color-peligro);
+  text-align: center;
+  font-weight: 600;
+  padding: 16px;
+}
